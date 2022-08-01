@@ -1,4 +1,5 @@
 const numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
+const QUESTIONS_COUNT = 2;
 
 const personalMovieDB = {
   count: numberOfFilms,
@@ -8,11 +9,38 @@ const personalMovieDB = {
   privat: false,
 };
 
-const key0 = prompt('Один из последних просмотренных фильмов?', ''),
-      value0 = prompt('На сколько оцените его?', ''),
-      key1 = prompt('Один из последних просмотренных фильмов?', ''),
-      value1 = prompt('На сколько оцените его?', '');
-
 personalMovieDB.count = numberOfFilms;
-personalMovieDB.movies[key0] = value0;
-personalMovieDB.movies[key1] = value1;
+
+if (personalMovieDB.count < 10) {
+  console.log('Просмотрено довольно мало фильмов');
+} else if (personalMovieDB.count >= 10 && personalMovieDB.count <= 30) {
+  console.log('Вы классический зритель');
+} else if (personalMovieDB.count > 30) {
+  console.log('Вы киноман');
+} else {
+  console.log('Произошла ошибка');
+}
+
+for (let i = 0; i < QUESTIONS_COUNT; i++) {
+  const key = prompt('Один из последних просмотренных фильмов?', ''),
+        value = prompt('На сколько оцените его?', '');
+
+  if (key == null || value == null || key == '' || value == '' || key.length > 50) {
+    console.log('error');
+    i--;
+  } else {
+    console.log('done');
+    personalMovieDB.movies[key] = value;
+  }
+
+  //! 2 пример
+  // if ((key != null && value != null && key != '' && value != '' && key.length < 50)) {
+  //   console.log('done');
+  //   personalMovieDB.movies[key] = value;
+  // } else {
+  //   console.log('error');
+  //   i--;
+  // }
+}
+
+console.log(personalMovieDB);
