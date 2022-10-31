@@ -98,6 +98,6 @@ const createMovieList = (movies, parent) => {
     })
 }
 
-deleteReclame(reclameElement);
+// deleteReclame(reclameElement);
 makeChanges(genreElement, promoBgElement);
 createMovieList(movieDB.movies, moviesList);
